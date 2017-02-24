@@ -18,7 +18,13 @@ connection.onopen = function(session){
     console.log('connection initialized; event: ', EVT_ONE);
 
     //trigger an event
-    session.publish(EVT_ONE, ['Hello World!']);
+    session.publish(EVT_ONE, ['Starting counter...']);
+
+    //trigger event loop
+    var c = 1;
+    setInterval(function(){
+        session.publish(EVT_ONE, [c++]);
+    }, 1000);
 
 };
 
